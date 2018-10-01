@@ -18,8 +18,15 @@ class TokenScraper():
 
 	def scrape_table(self):
 		html = self.driver.page_source # Gets source of current page
-		self.soup = BeautifulSoup(html, 'html.parser')
-		print self.soup.title
+		soup = BeautifulSoup(html, 'html.parser')
+		for rows in soup.findAll('tr'):
+			data = [rows.text for rows in rows.findAll("td")]
+			print data
+		# tds = soup.findAll('td')
+		# print tds
+		# for link in soup.find_all('a'):
+		#	print(link.get('href'))
+		# print self.soup.title
 
 if __name__ == "__main__":
     TokenScraper().input_search()
